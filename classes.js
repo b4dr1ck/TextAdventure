@@ -167,6 +167,7 @@ class BaseObject {
 export class Room extends BaseObject {
   #exits;
   #objects;
+  #hiddenDescription;
   constructor(name, uniqueKey, aliases, description) {
     super(name, uniqueKey, aliases, description);
     this.#exits = {};
@@ -179,9 +180,15 @@ export class Room extends BaseObject {
   get objects() {
     return this.#objects;
   }
+  get hiddenDescription() {
+    return this.#hiddenDescription;
+  }
 
   set exits(newExits) {
     this.#exits = newExits;
+  }
+  set hiddenDescription(newDescription) {
+    this.#hiddenDescription = newDescription;
   }
 
   addObjects(...objects) {
@@ -465,8 +472,8 @@ export class TriggerObject extends GameObject {
   constructor(name, uniqueKey, aliases, description) {
     super(name, uniqueKey, aliases, description);
     this.#state = false;
-    this.#stateOnDescription = "It is currently on.";
-    this.#stateOffDescription = "It is currently off.";
+    this.#stateOnDescription = " It is currently on.";
+    this.#stateOffDescription = " It is currently off.";
   }
 
   get state() {
