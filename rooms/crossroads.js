@@ -8,7 +8,7 @@ import { passage } from "../objects/crossroads/passage.js";
 
 export const crossroads = new Room(
   "Crossroads",
-  "room3",
+  "crossroads",
   ["crossroads", "intersection"],
   "You reach a crossroads.<br>" +
     "The walls here are made of the same dark marble as the hallway but have no decorations or adornments.<br>" +
@@ -23,8 +23,8 @@ export const crossroads = new Room(
 
 
 crossroads.exits = {
-  south: { destination: "room2", obstacle: null },
-  west: { destination: "room4", obstacle: redDoor },
+  south: { destination: "hallway", obstacle: null },
+  west: { destination: "kitchen", obstacle: redDoor },
   east: { destination: "room5", obstacle: woodenDoor },
   north: { destination: "room6", obstacle: null },
   northwest: { destination: "room7", obstacle: null },

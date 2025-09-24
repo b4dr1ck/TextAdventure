@@ -14,7 +14,7 @@ import { ball } from "../objects/darkRoom/ball.js";
 
 export const darkRoom = new Room(
   "Dark Room",
-  "room1",
+  "darkRoom",
   ["dark room", "room", "dimly lit room"],
   "You are in the middle of a dimly lit room.<br>" +
     "The walls around you are made of rough stone, and the air is damp and musty.<br>" +
@@ -26,5 +26,5 @@ export const darkRoom = new Room(
     "In the north you see a white door that seems to be the only way out of this room.<br>"
 );
 
-darkRoom.exits = { north: { destination: "room2", obstacle: whiteDoor } };
+darkRoom.exits = { north: { destination: "hallway", obstacle: whiteDoor } };
 darkRoom.addObjects(table, book, plankedWindow, planks, chandelier, walls, floor1, whiteDoor, carpet, key1, ball);

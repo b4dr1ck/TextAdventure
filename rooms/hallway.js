@@ -14,7 +14,7 @@ import { amulet } from "../objects/hallway/amulet.js";
 
 export const hallway = new Room(
   "Hallway",
-  "room2",
+  "hallway",
   ["hallway", "corridor"],
   "You are in a long, narrow hallway made completely out of dark marble.<br>" +
     "There is no real floor on the ground, just some earth and dirt below you.<br>" +
@@ -44,8 +44,8 @@ const waitRoomTrigger = () => {
 };
 hallway.createTrigger("wait", waitRoomTrigger);
 hallway.exits = {
-  south: { destination: "room1", obstacle: whiteDoor },
-  north: { destination: "room3", obstacle: null },
+  south: { destination: "darkRoom", obstacle: whiteDoor },
+  north: { destination: "crossroads", obstacle: null },
 };
 hallway.addObjects(whiteDoor, stone, marble, floor2, tapestries, torch, window2, nest, bench, chest);
 
