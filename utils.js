@@ -105,7 +105,11 @@ const getRoomDescription = (room) => {
   let descText = "";
 
   descText += `<h3>${room.name}</h3>`;
-  descText += `${room.description}`;
+  if (room.hidden) {
+    descText += `<p>${room.hiddenDescription}</p>`;
+  } else {
+    descText += `<p>${room.description}`;
+  }
 
   for (const object in room.objects) {
     if (room.objects[object].sceneryDescription && !room.objects[object].hidden) {
@@ -113,7 +117,7 @@ const getRoomDescription = (room) => {
     }
   }
 
-  return descText;
+  return descText + "</p>";
 };
 
 const findObject = (key) => {
