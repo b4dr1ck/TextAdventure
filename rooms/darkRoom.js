@@ -2,7 +2,7 @@ import { Room } from "../classes.js";
 
 import { whiteDoor } from "../objects/darkRoom/whiteDoor.js";
 import { book } from "../objects/darkRoom/book.js";
-import { table } from "../objects/darkRoom/table.js";
+import { pedestal } from "../objects/darkRoom/pedestal.js";
 import { plankedWindow } from "../objects/darkRoom/plankedWindow.js";
 import { planks } from "../objects/darkRoom/planks.js";
 import { chandelier } from "../objects/darkRoom/chandelier.js";
@@ -18,7 +18,7 @@ export const darkRoom = new Room(
   ["dark room", "room", "dimly lit room"],
   "You are in the middle of a dimly lit room.<br>" +
     "The walls around you are made of rough stone, and the air is damp and musty.<br>" +
-    "Beside you in the western wall is an old wooden table with a mystic book on it.<br>" +
+    "Beside you on the western wall is an old wooden pedestal with a mystic book on it.<br>" +
     "There is also a window on the easten wall, but it is barred shut with wooden planks.<br>" +
     "The floor is made of cold stone tiles, some of which are cracked and uneven.<br>" +
     "On it lies a tatty old carpet, its colors faded and threadbare.<br>" +
@@ -27,4 +27,4 @@ export const darkRoom = new Room(
 );
 
 darkRoom.exits = { north: { destination: "hallway", obstacle: whiteDoor } };
-darkRoom.addObjects(table, book, plankedWindow, planks, chandelier, walls, floor1, whiteDoor, carpet, key1, ball);
+darkRoom.addObjects(pedestal, book, plankedWindow, planks, chandelier, walls, floor1, whiteDoor, carpet, key1, ball);
