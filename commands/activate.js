@@ -7,7 +7,7 @@ export const activate = (verb, nouns, _preps, orig) => {
 
   if (!validateObject(object, orig)) return;
 
-  if (object.constructor.name !== "TriggerObject") {
+  if (object.constructor.name !== "TriggerObject" || !object.canToggle) {
     outputText.push(`You can't ${verb} the <strong>${object.name}</strong>.`);
     return;
   }
@@ -26,6 +26,6 @@ export const activate = (verb, nouns, _preps, orig) => {
     object.turnOff();
   }
   outputText.push(`You ${verb} the <strong>${object.name}</strong>.`);
-  
+
   callTrigger(object, verb, object);
 };
