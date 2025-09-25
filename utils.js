@@ -89,10 +89,7 @@ const getInventoryAliases = (player) => {
 const getContainerAliases = (room) => {
   const aliases = {};
   for (const object in room.objects) {
-    if (
-      room.objects[object].constructor.name === "Container" ||
-      room.objects[object].constructor.name === "Surface"
-    ) {
+    if (room.objects[object].constructor.name === "Container" || room.objects[object].constructor.name === "Surface") {
       for (const item in room.objects[object].contains) {
         aliases[item] = room.objects[object].contains[item].aliases;
       }
@@ -148,7 +145,15 @@ const findObject = (key) => {
   return null;
 };
 
-const validateObject = (object, verb, orig) => {
+const callTrigger = (object, verb, objec2) => {
+  // object has a trigger
+  if (object.triggers.hasOwnProperty(verb)) {
+    outputText.push(object.trigger(verb, objec2));
+    return true;
+  }
+};
+
+const validateObject = (object, orig) => {
   // object does not exist
   if (!object) {
     orig = orig.charAt(0).toUpperCase() + orig.slice(1);
@@ -162,11 +167,6 @@ const validateObject = (object, verb, orig) => {
     return false;
   }
 
-  // object has a trigger
-  if (object.triggers.hasOwnProperty(verb)) {
-    outputText.push(object.trigger(verb, object));
-    return false;
-  }
   return true;
 };
 
@@ -184,4 +184,5 @@ export {
   getRoomDescription,
   findObject,
   validateObject,
+  callTrigger,
 };
