@@ -1,7 +1,7 @@
-import { GameObject } from "../../classes.js";
+import { Consumable } from "../../classes.js";
 import { player } from "../../init.js";
 
-export const ball = new GameObject(
+export const ball = new Consumable(
   "red ball",
   "ball1",
   ["ball", "small ball", "red ball", "rubber ball"],
