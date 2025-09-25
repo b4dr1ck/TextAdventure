@@ -461,11 +461,13 @@ export class TriggerObject extends GameObject {
   #state;
   #stateOnDescription;
   #stateOffDescription;
+  #canToggle;
   constructor(name, uniqueKey, aliases, description) {
     super(name, uniqueKey, aliases, description);
     this.#state = false;
     this.#stateOnDescription = "It is currently on.";
     this.#stateOffDescription = "It is currently off.";
+    this.canToggle = true;
   }
 
   get state() {
@@ -474,12 +476,18 @@ export class TriggerObject extends GameObject {
   get description() {
     return super.description + " " + (this.#state ? this.#stateOnDescription : this.#stateOffDescription);
   }
+  get canToggle() {
+    return this.#canToggle;
+  }
 
   set stateOnDescription(newDescriptions) {
     this.#stateOnDescription = newDescriptions;
   }
   set stateOffDescription(newDescriptions) {
     this.#stateOffDescription = newDescriptions;
+  }
+  set canToggle(toggleable) {
+    this.#canToggle = toggleable;
   }
 
   turnOn() {
