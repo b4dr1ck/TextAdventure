@@ -7,7 +7,7 @@ export const activate = (verb, nouns, _preps, orig) => {
 
   if (!validateObject(object, verb, orig)) return;
 
-  if (object.constructor.name !== "TriggerObject" && object.constructor.name !== "LightSource") {
+  if (object.constructor.name !== "TriggerObject") {
     outputText.push(`You can't ${verb} the <strong>${object.name}</strong>.`);
     return;
   }

@@ -464,15 +464,15 @@ export class TriggerObject extends GameObject {
   constructor(name, uniqueKey, aliases, description) {
     super(name, uniqueKey, aliases, description);
     this.#state = false;
-    this.#stateOnDescription = " It is currently on.";
-    this.#stateOffDescription = " It is currently off.";
+    this.#stateOnDescription = "It is currently on.";
+    this.#stateOffDescription = "It is currently off.";
   }
 
   get state() {
     return this.#state;
   }
   get description() {
-    return super.description + (this.#state ? this.#stateOnDescription : this.#stateOffDescription);
+    return super.description + " " + (this.#state ? this.#stateOnDescription : this.#stateOffDescription);
   }
 
   set stateOnDescription(newDescriptions) {
@@ -487,12 +487,6 @@ export class TriggerObject extends GameObject {
   }
   turnOff() {
     this.#state = false;
-  }
-}
-
-export class LightSource extends TriggerObject {
-  constructor(name, uniqueKey, aliases, description) {
-    super(name, uniqueKey, aliases, description);
   }
 }
 
