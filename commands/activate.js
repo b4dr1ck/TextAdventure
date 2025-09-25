@@ -1,11 +1,11 @@
 import { outputText } from "../game.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject, callTrigger } from "../utils.js";
 
 export const activate = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
 
   if (object.constructor.name !== "TriggerObject") {
     outputText.push(`You can't ${verb} the <strong>${object.name}</strong>.`);
@@ -26,4 +26,6 @@ export const activate = (verb, nouns, _preps, orig) => {
     object.turnOff();
   }
   outputText.push(`You ${verb} the <strong>${object.name}</strong>.`);
+  
+  callTrigger(object, verb, object);
 };

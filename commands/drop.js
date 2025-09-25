@@ -1,12 +1,14 @@
-import { outputText } from '../game.js';
-import { player, rooms } from '../init.js';
-import { findObject, validateObject } from '../utils.js';
+import { outputText } from "../game.js";
+import { player, rooms } from "../init.js";
+import { findObject, validateObject,callTrigger } from "../utils.js";
 
 export const drop = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
+
+  if (callTrigger(object, verb, object)) return;
 
   if (!player.isInInventory(object.uniqueKey)) {
     outputText.push(`You don't have the <strong>${object.name}</strong>.`);

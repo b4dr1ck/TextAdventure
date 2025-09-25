@@ -1,5 +1,5 @@
 import { player } from "../init.js";
-import { findObject } from "../utils.js";
+import { findObject, callTrigger } from "../utils.js";
 import { outputText, commands } from "../game.js";
 
 export const use = (verb, nouns, preps, _orig) => {
@@ -48,9 +48,7 @@ export const use = (verb, nouns, preps, _orig) => {
     return;
   }
 
-  if (object2.triggers.hasOwnProperty(verb)) {
-    outputText.push(object2.trigger(verb, object1));
-  } else {
-    outputText.push(`You can't use the <strong>${object1.name}</strong> on the <strong>${object2.name}</strong>.`);
-  }
+  if (callTrigger(object2, verb, object1)) return;
+
+  outputText.push(`You can't use the <strong>${object1.name}</strong> on the <strong>${object2.name}</strong>.`);
 };

@@ -1,11 +1,12 @@
 import { outputText } from "../game.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject,callTrigger } from "../utils.js";
 
 export const look = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
+  if (callTrigger(object, verb, object)) return;
 
   let desc = "";
 

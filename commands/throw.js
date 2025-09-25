@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
 import { player, rooms } from "../init.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject, callTrigger } from "../utils.js";
 
 export const _throw = (verb, nouns, preps, orig) => {
   const id = nouns[0];
@@ -9,11 +9,8 @@ export const _throw = (verb, nouns, preps, orig) => {
   const object = findObject(id);
   const target = findObject(targetId);
 
-  if (!validateObject(object, verb, orig)) return;
-  if (!target) {
-    outputText.push(`Throw the <strong>${object.name}</strong> where?`);
-    return;
-  }
+  if (!validateObject(object, orig)) return;
+  if (!validateObject(target, orig)) return;
 
   if (!player.isInInventory(object.uniqueKey)) {
     outputText.push(`You don't have the <strong>${object.name}</strong>.`);
@@ -25,17 +22,15 @@ export const _throw = (verb, nouns, preps, orig) => {
     return;
   }
 
-  if (prep !== "at" && prep !== "to") {
-    outputText.push(`Wrong syntax. Use "throw [object] at/to [target]".`);
+  if (prep !== "at" && prep !== "to" && prep !== "on") {
+    outputText.push(`Wrong syntax. Use "throw [object] at/to/on [target]".`);
     return;
   }
 
   outputText.push(`You throw the <strong>${object.name}</strong> at the <strong>${target.name}</strong>s.`);
 
-  if (target.triggers.hasOwnProperty(verb)) {
-    outputText.push(target.trigger(verb, object));
-  }
-
   player.removeFromInventory(object.uniqueKey);
   rooms[player.currentRoom.uniqueKey].addObjects(object);
+
+  if (callTrigger(target, verb, object)) return;
 };

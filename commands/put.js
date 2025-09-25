@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
 import { player, } from "../init.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject ,callTrigger} from "../utils.js";
 
 export const put = (verb, nouns, preps, orig) => {
   const id = nouns[0];
@@ -9,7 +9,7 @@ export const put = (verb, nouns, preps, orig) => {
   const object = findObject(id);
   const container = findObject(containerId);
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
   if (!container) {
     outputText.push(`Put the <strong>${object.name}</strong> where?`);
     return;
@@ -20,10 +20,7 @@ export const put = (verb, nouns, preps, orig) => {
     return;
   }
 
-  if (container.triggers.hasOwnProperty(verb)) {
-    outputText.push(container.trigger(verb, object));
-    return;
-  }
+  if (callTrigger(container, verb, object)) return;
 
   if (container.constructor.name !== "Container" && container.constructor.name !== "Surface") {
     outputText.push(`You can't put things in or on the <strong>${container.name}</strong>.`);

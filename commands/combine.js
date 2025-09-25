@@ -10,13 +10,11 @@ export const combine = (verb, nouns, preps, orig) => {
   const object1 = findObject(id1);
   const object2 = findObject(id2);
 
-  if (!validateObject(object1, verb, orig)) return;
-  if (!validateObject(object2, verb, orig)) return;
+  if (!validateObject(object1, orig)) return;
+  if (!validateObject(object2, orig)) return;
 
   if (object1.constructor.name !== "Combineable" || object2.constructor.name !== "Combineable") {
-    outputText.push(
-      `You can't combine the <strong>${object1.name}</strong> and the <strong>${object2.name}</strong>.`
-    );
+    outputText.push(`You can't combine the <strong>${object1.name}</strong> and the <strong>${object2.name}</strong>.`);
     return;
   }
 

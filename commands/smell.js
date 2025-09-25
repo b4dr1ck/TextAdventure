@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
 import { player } from "../init.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject, callTrigger } from "../utils.js";
 
 export const smell = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
@@ -11,7 +11,9 @@ export const smell = (verb, nouns, _preps, orig) => {
     return;
   }
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
+
+  if (callTrigger(object, verb, object)) return;
 
   if (!object[verb]) {
     outputText.push(`The <strong>${object.name}</strong> doesn't have a ${verb}.`);

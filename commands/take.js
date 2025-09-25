@@ -1,12 +1,13 @@
 import { outputText } from "../game.js";
 import { player, rooms } from "../init.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject, callTrigger } from "../utils.js";
 
 export const take = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
+  if (callTrigger(object, verb, object)) return;
 
   if (!object.canTake) {
     outputText.push(`You can't take the <strong>${object.name}</strong>.`);

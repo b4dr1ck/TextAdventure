@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
 import { player } from "../init.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject, callTrigger } from "../utils.js";
 
 export const attack = (verb, nouns, preps, orig) => {
   const id1 = nouns[0];
@@ -9,11 +9,8 @@ export const attack = (verb, nouns, preps, orig) => {
   const object2 = findObject(id2);
   const prep = preps[0];
 
-  if (!validateObject(object1, verb, orig)) return;
-  if (!object2) {
-    outputText.push(`Attack the <strong>${object1.name}</strong> with what?`);
-    return;
-  }
+  if (!validateObject(object1, orig)) return;
+  if (!validateObject(object2, orig)) return;
 
   if (!player.isInInventory(object2.uniqueKey)) {
     outputText.push(`You don't have the <strong>${object2.name}</strong>.`);
@@ -24,6 +21,8 @@ export const attack = (verb, nouns, preps, orig) => {
     outputText.push(`Wrong syntax. Use "attack [object1] with [object2]".`);
     return;
   }
+
+  if (callTrigger(object1, verb, object2)) return;
 
   if (!object1.canBeAttacked) {
     outputText.push(`You can't attack the <strong>${object1.name}</strong>`);

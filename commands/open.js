@@ -1,5 +1,5 @@
 import { outputText } from "../game.js";
-import { findObject, validateObject } from "../utils.js";
+import { findObject, validateObject ,callTrigger} from "../utils.js";
 import { player } from "../init.js";
 
 export const open = (verb, nouns, preps, orig) => {
@@ -7,7 +7,7 @@ export const open = (verb, nouns, preps, orig) => {
   const prep = preps[0];
   const object = findObject(id);
 
-  if (!validateObject(object, verb, orig)) return;
+  if (!validateObject(object, orig)) return;
 
   if (
     object.constructor.name !== "Container" &&
@@ -42,6 +42,7 @@ export const open = (verb, nouns, preps, orig) => {
     if (prep === "with") {
       object.unlock(object.keyName);
       outputText.push(`You unlock the <strong>${object.name}</strong> with the <strong>${key.name}</strong>.`);
+      player.removeFromInventory(key.uniqueKey);
     } else {
       outputText.push(`The <strong>${object.name}</strong> is locked.`);
       return;
@@ -54,4 +55,6 @@ export const open = (verb, nouns, preps, orig) => {
     object.open();
   }
   outputText.push(`You ${verb} the <strong>${object.name}</strong>.`);
+
+  if (callTrigger(object, verb, object)) return;
 };
