@@ -16,8 +16,12 @@ export const look = (verb, nouns, _preps, orig) => {
   desc += object.description;
 
   // list contents if container/tablelike
-  if (object.constructor.name === "Container" || object.constructor.name === "TableLike") {
-    if (!object.isEmpty()) {
+  if (object.constructor.name === "Container" || object.constructor.name === "Surface") {
+    if (object.isEmpty()) {
+      outputText.push(desc);
+      return;
+    }
+    if (object.isOpen || object.constructor.name === "Surface") {
       desc += `<br>${object.containText}`;
       for (const item in object.contains) {
         desc += `<br>* ${object.contains[item].name}`;

@@ -22,7 +22,7 @@ export const take = (verb, nouns, _preps, orig) => {
   if (object.whereAmI.name !== "room") {
     const containerId = object.whereAmI.key;
     const container = findObject(containerId);
-    if (container && (container.constructor.name === "Container" || container.constructor.name === "TableLike")) {
+    if (container && (container.constructor.name === "Container" || container.constructor.name === "Surface")) {
       player.addToInventory(object);
       container.removeItem(object.uniqueKey);
       outputText.push(`You take the <strong>${object.name}</strong> from the <strong>${container.name}</strong>.`);

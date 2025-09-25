@@ -344,18 +344,16 @@ export class Lockable extends GameObject {
   #isLocked;
   #isOpen;
   #keyName;
-  #alwaysOpen;
   constructor(name, uniqueKey, aliases, description) {
     super(name, uniqueKey, aliases, description);
     this.#isLocked = false;
     this.#isOpen = false;
     this.#keyName = "";
-    this.#alwaysOpen = false;
   }
 
   get description() {
     let descText = super.description;
-    if (this.#alwaysOpen) {
+    if (this instanceof Surface) {
       return descText;
     }
     if (this.#isLocked) {
@@ -376,9 +374,6 @@ export class Lockable extends GameObject {
   get keyName() {
     return this.#keyName;
   }
-  get alwaysOpen() {
-    return this.#alwaysOpen;
-  }
 
   set isLocked(lockStatus) {
     this.#isLocked = lockStatus;
@@ -388,9 +383,6 @@ export class Lockable extends GameObject {
   }
   set keyName(keyName) {
     this.#keyName = keyName;
-  }
-  set alwaysOpen(alwaysOpen) {
-    this.#alwaysOpen = alwaysOpen;
   }
 
   close() {
@@ -540,7 +532,7 @@ export class Container extends Lockable {
   }
 
   get contains() {
-    if (super.alwaysOpen || this.isOpen) {
+    if (this instanceof Surface || this.isOpen) {
       return this.#contains;
     }
     if (!this.isOpen) {
@@ -577,11 +569,9 @@ export class Container extends Lockable {
   }
 }
 
-export class TableLike extends Container {
+export class Surface extends Container {
   constructor(name, uniqueKey, aliases, description, validPrepositions) {
     super(name, uniqueKey, aliases, description, validPrepositions);
-    super.alwaysOpen = true;
-    super.isOpen = true;
   }
 }
 

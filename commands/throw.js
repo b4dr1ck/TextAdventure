@@ -30,12 +30,10 @@ export const _throw = (verb, nouns, preps, orig) => {
     return;
   }
 
+  outputText.push(`You throw the <strong>${object.name}</strong> at the <strong>${target.name}</strong>s.`);
+
   if (target.triggers.hasOwnProperty(verb)) {
-    outputText.push(object.trigger(verb, target));
-  } else {
-    outputText.push(
-      `You throw the <strong>${object.name}</strong> at the <strong>${target.name}</strong>, but nothing happens.`
-    );
+    outputText.push(target.trigger(verb, object));
   }
 
   player.removeFromInventory(object.uniqueKey);

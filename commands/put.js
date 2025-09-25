@@ -25,7 +25,7 @@ export const put = (verb, nouns, preps, orig) => {
     return;
   }
 
-  if (container.constructor.name !== "Container" && container.constructor.name !== "TableLike") {
+  if (container.constructor.name !== "Container" && container.constructor.name !== "Surface") {
     outputText.push(`You can't put things in or on the <strong>${container.name}</strong>.`);
     return;
   }

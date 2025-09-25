@@ -12,13 +12,13 @@ export const open = (verb, nouns, preps, orig) => {
   if (
     object.constructor.name !== "Container" &&
     object.constructor.name !== "Lockable" &&
-    object.constructor.name !== "TableLike"
+    object.constructor.name !== "Surface"
   ) {
     outputText.push(`You can't ${verb} the <strong>${object.name}</strong>.`);
     return;
   }
 
-  if (object.constructor.name === "TableLike") {
+  if (object.constructor.name === "Surface") {
     outputText.push(`The <strong>${object.name}</strong> can't be ${verb}ed.`);
     return;
   }
