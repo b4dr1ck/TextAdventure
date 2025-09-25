@@ -1,7 +1,7 @@
-import { TableLike } from "../../classes.js";
+import { Surface } from "../../classes.js";
 import { player } from "../../init.js";
 
-export const nest = new TableLike(
+export const nest = new Surface(
   "bird's nest",
   "nest1",
   ["nest", "bird's nest", "small nest", "birds nest"],

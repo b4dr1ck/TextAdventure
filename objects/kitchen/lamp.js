@@ -1,6 +1,6 @@
-import { LightSource } from "../../classes.js";
+import { GameObject } from "../../classes.js";
 
-export const lamp = new LightSource(
+export const lamp = new GameObject(
   "lamp",
   "lamp1",
   ["lamp", "table lamp", "light"],

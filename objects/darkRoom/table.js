@@ -1,7 +1,7 @@
-import { TableLike } from "../../classes.js";
+import { Surface } from "../../classes.js";
 import { book } from "./book.js";
 
-export const table = new TableLike(
+export const table = new Surface(
   "table",
   "table1",
   ["table", "desk", "old table"],

@@ -91,7 +91,7 @@ const getContainerAliases = (room) => {
   for (const object in room.objects) {
     if (
       room.objects[object].constructor.name === "Container" ||
-      room.objects[object].constructor.name === "TableLike"
+      room.objects[object].constructor.name === "Surface"
     ) {
       for (const item in room.objects[object].contains) {
         aliases[item] = room.objects[object].contains[item].aliases;
@@ -136,7 +136,7 @@ const findObject = (key) => {
   for (const object in player.currentRoom.objects) {
     if (
       player.currentRoom.objects[object].constructor.name === "Container" ||
-      player.currentRoom.objects[object].constructor.name === "TableLike"
+      player.currentRoom.objects[object].constructor.name === "Surface"
     ) {
       if (player.currentRoom.objects[object].contains) {
         if (key in player.currentRoom.objects[object].contains) {
