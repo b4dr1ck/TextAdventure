@@ -10,6 +10,8 @@ import { rat } from "../objects/kitchen/rat.js";
 import { goldCoin } from "../objects/kitchen/goldcoin.js";
 import { fireplace } from "../objects/kitchen/fireplace.js";
 import { kettle } from "../objects/kitchen/kettle.js";
+import { walls } from "../objects/kitchen/walls.js";
+import { floor } from "../objects/kitchen/floor.js";
 
 export const kitchen = new Room(
   "Kitchen",
@@ -29,4 +31,4 @@ kitchen.exits = {
   east: { destination: "crossroads", obstacle: redDoor },
 };
 
-kitchen.addObjects(lamp, shelves, cupboard, largeTable, chairs, rat, goldCoin, fireplace, kettle);
+kitchen.addObjects(lamp, shelves, cupboard, largeTable, chairs, rat, goldCoin, fireplace, kettle, walls, floor);
