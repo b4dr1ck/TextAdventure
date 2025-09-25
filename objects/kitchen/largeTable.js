@@ -1,5 +1,6 @@
 import { Surface } from "../../classes.js";
 import { knife } from "./knife.js";
+import { waterbottle } from "./waterbottle.js";
 
 export const largeTable = new Surface(
   "large table",
@@ -21,4 +22,4 @@ export const largeTable = new Surface(
 );
 
 largeTable.containText = "Some of them could be useful, like: ";
-largeTable.addItems(knife);
+largeTable.addItems(knife, waterbottle);
