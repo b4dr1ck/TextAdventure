@@ -8,5 +8,5 @@ export const pedestal = new Surface(
   "An old sturdy wooden dark <strong>pedestal</strong>, fixed to the ground.",
   ["on", "on top of", "onto"]
 );
-pedestal.containText = "On the table you see: ";
+pedestal.containText = "On the pedestal you see: ";
 pedestal.addItems(book);
