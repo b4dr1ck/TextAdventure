@@ -15,7 +15,7 @@ const bookTrigger = (book) => {
     "The book remains firmly on the podium, its cover glowing faintly."
   );
 };
-book.createPostTrigger("read", bookTrigger);
-book.createPostTrigger("take", bookTrigger);
-book.createPostTrigger("attack", bookTrigger);
-book.createPostTrigger("smell", bookTrigger);
+book.createPreTrigger("read", bookTrigger);
+book.createPreTrigger("take", bookTrigger);
+book.createPreTrigger("attack", bookTrigger);
+book.createPreTrigger("smell", bookTrigger);
