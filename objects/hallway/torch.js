@@ -19,7 +19,7 @@ const torchMoveTrigger = (torch) => {
     player.adjustHealth(-5);
     return "As you touch the lit torch, you quickly pull your hand back - it's too hot to handle!";
   }
-  torch.deletePostTrigger("move");
+  torch.deletePreTrigger("move");
   return "You push the torch to the side a bit and hear some stones shifting nearby.";
 };
 
@@ -32,5 +32,5 @@ const torchUseTrigger = (item) => {
   return "You can't use that on the torch.";
 };
 
-torch.createPostTrigger("move", torchMoveTrigger);
+torch.createPreTrigger("move", torchMoveTrigger);
 torch.createPostTrigger("use", torchUseTrigger);

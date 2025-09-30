@@ -148,7 +148,7 @@ const findObject = (key) => {
 const callPostTrigger = (object, verb, objec2) => {
   // object has a postTriggers
   if (object.postTriggers.hasOwnProperty(verb)) {
-    outputText.push(object.postTriggers(verb, objec2));
+    outputText.push(object.postTrigger(verb, objec2));
     return true;
   }
 };
