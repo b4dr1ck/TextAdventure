@@ -9,7 +9,8 @@ export const carpet = new GameObject(
 );
 carpet.moveable = true;
 const carpetMoveTrigger = (carpet) => {
+  carpet.deletePreTrigger("move");
   key1.hidden = false;
   return "You move the carpet aside, revealing a <strong>key</strong> taped to the floor underneath it.";
 };
-carpet.createPostTrigger("move", carpetMoveTrigger);
+carpet.createPreTrigger("move", carpetMoveTrigger);

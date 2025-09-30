@@ -11,7 +11,7 @@ export const bench = new Surface(
 bench.containText = "On the bench you see: ";
 const benchLookTrigger = (bench) => {
   chest.hidden = false;
-  bench.deleteTrigger("look");
+  bench.deletePreTrigger("look");
   return "On a closer look you find a <strong>chest</strong> standing under the bench.";
 };
-bench.createPostTrigger("look", benchLookTrigger);
+bench.createPreTrigger("look", benchLookTrigger);

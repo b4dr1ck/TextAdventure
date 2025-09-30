@@ -11,11 +11,11 @@ export const chairs = new GameObject(
 
 chairs.moveable = true;
 
-const moveCharTrigger = (chair) => {
-  chair.deleteTrigger("move");
+const moveChairTrigger = (chair) => {
+  chair.deletePreTrigger("move");
   rat.hidden = false;
   return "As you move the chair, a big fat rat jumps out from behind it,<br>startled and angry and runs into the next corner.";
 };
 
-chairs.createPostTrigger("move", moveCharTrigger);
-chairs.createPostTrigger("take", () => "You raise one of the chairs, but it's too heavy to carry around.");
+chairs.createPreTrigger("move", moveChairTrigger);
+chairs.createPreTrigger("take", () => "You raise one of the chairs, but it's too heavy to carry around.");

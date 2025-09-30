@@ -19,4 +19,4 @@ const nestPutTrigger = (item) => {
   }
   return `It doesn't seem like a good idea to put the <strong>${item.name}</strong> in the nest.`;
 };
-nest.createPostTrigger("put", nestPutTrigger);
+nest.createPreTrigger("put", nestPutTrigger);

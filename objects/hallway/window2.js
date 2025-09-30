@@ -13,7 +13,7 @@ export const window2 = new GameObject(
 
 const windowLookTrigger = (window2) => {
   nest.hidden = false;
-  window2.deleteTrigger("look");
+  window2.deletePreTrigger("look");
   return (
     window2.description +
     "<br>On a closer look you see a small nest of twigs and leaves sits on the window sill" +
@@ -27,6 +27,6 @@ const windowClimbTrigger = () => {
     "What do you expected?"
   );
 };
-window2.createPostTrigger("look", windowLookTrigger);
-window2.createPostTrigger("climb", windowClimbTrigger);
+window2.createPreTrigger("look", windowLookTrigger);
+window2.createPreTrigger("climb", windowClimbTrigger);
 window2.hear = "You hear the faint hooting of an owl in the distance.";

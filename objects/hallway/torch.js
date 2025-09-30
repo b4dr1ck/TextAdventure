@@ -19,14 +19,14 @@ const torchMoveTrigger = (torch) => {
     player.adjustHealth(-5);
     return "As you touch the lit torch, you quickly pull your hand back - it's too hot to handle!";
   }
-  torch.deleteTrigger("move");
+  torch.deletePostTrigger("move");
   return "You push the torch to the side a bit and hear some stones shifting nearby.";
 };
 
 const torchUseTrigger = (item) => {
   if (item.uniqueKey === "waterbottle1") {
     torch.turnOff();
-    torch.deleteTrigger("use");
+    torch.deletePostTrigger("use");
     return "You extinguish the torch with the water from the bottle.<br>The torch is now unlit.";
   }
   return "You can't use that on the torch.";

@@ -31,7 +31,7 @@ export const hallway = new Room(
 
 const waitRoomTrigger = () => {
   if (nest.isInContainer("worm1")) {
-    hallway.deleteTrigger("wait");
+    hallway.deletePreTrigger("wait");
     nest.removeItem("worm1");
     nest.addItems(amulet);
     return (
@@ -42,10 +42,9 @@ const waitRoomTrigger = () => {
   }
   return "You wait for a while. Nothing happens";
 };
-hallway.createPostTrigger("wait", waitRoomTrigger);
+hallway.createPreTrigger("wait", waitRoomTrigger);
 hallway.exits = {
   south: { destination: "darkRoom", obstacle: whiteDoor },
   north: { destination: "crossroads", obstacle: null },
 };
 hallway.addObjects(whiteDoor, stone, marble, floor2, tapestries, torch, window2, nest, bench, chest);
-

@@ -41,5 +41,4 @@ export const put = (verb, nouns, preps, orig) => {
   container.addItems(object);
   outputText.push(`You put the <strong>${object.name}</strong> ${prep} the <strong>${container.name}</strong>.`);
 
-  if (callPostTrigger(container, verb, object)) return;
 };
