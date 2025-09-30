@@ -17,5 +17,5 @@ const moveCharTrigger = (chair) => {
   return "As you move the chair, a big fat rat jumps out from behind it,<br>startled and angry and runs into the next corner.";
 };
 
-chairs.createTrigger("move", moveCharTrigger);
-chairs.createTrigger("take", () => "You raise one of the chairs, but it's too heavy to carry around.");
+chairs.createPostTrigger("move", moveCharTrigger);
+chairs.createPostTrigger("take", () => "You raise one of the chairs, but it's too heavy to carry around.");

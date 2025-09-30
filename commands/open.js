@@ -1,5 +1,5 @@
 import { outputText } from "../game.js";
-import { findObject, validateObject ,callTrigger} from "../utils.js";
+import { findObject, validateObject, callPostTrigger, callPreTrigger } from "../utils.js";
 import { player } from "../init.js";
 
 export const open = (verb, nouns, preps, orig) => {
@@ -8,6 +8,8 @@ export const open = (verb, nouns, preps, orig) => {
   const object = findObject(id);
 
   if (!validateObject(object, orig)) return;
+
+  if (callPreTrigger(object, verb, object)) return;
 
   if (
     object.constructor.name !== "Container" &&
@@ -56,5 +58,5 @@ export const open = (verb, nouns, preps, orig) => {
   }
   outputText.push(`You ${verb} the <strong>${object.name}</strong>.`);
 
-  if (callTrigger(object, verb, object)) return;
+  if (callPostTrigger(object, verb, object)) return;
 };

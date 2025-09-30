@@ -25,7 +25,7 @@ export const crossroads = new Room(
 crossroads.exits = {
   south: { destination: "hallway", obstacle: null },
   west: { destination: "kitchen", obstacle: redDoor },
-  east: { destination: "room5", obstacle: woodenDoor },
+  east: { destination: "studyRoom", obstacle: woodenDoor },
   north: { destination: "room6", obstacle: null },
   northwest: { destination: "room7", obstacle: null },
 };

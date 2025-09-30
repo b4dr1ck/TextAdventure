@@ -42,7 +42,7 @@ const waitRoomTrigger = () => {
   }
   return "You wait for a while. Nothing happens";
 };
-hallway.createTrigger("wait", waitRoomTrigger);
+hallway.createPostTrigger("wait", waitRoomTrigger);
 hallway.exits = {
   south: { destination: "darkRoom", obstacle: whiteDoor },
   north: { destination: "crossroads", obstacle: null },

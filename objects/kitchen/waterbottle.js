@@ -16,4 +16,4 @@ const drinkWaterTrigger = (water) => {
   return "You take a sip of the dirty water. It tastes awful and you feel a bit sick afterwards";
 };
 
-waterbottle.createTrigger("consume", drinkWaterTrigger);
+waterbottle.createPostTrigger("consume", drinkWaterTrigger);

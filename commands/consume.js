@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
 import { player } from "../init.js";
-import { callTrigger, findObject, validateObject } from "../utils.js";
+import { callPreTrigger, callPostTrigger, findObject, validateObject } from "../utils.js";
 
 export const consume = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
@@ -8,7 +8,7 @@ export const consume = (verb, nouns, _preps, orig) => {
 
   if (!validateObject(object, orig)) return;
 
-  if (callTrigger(object, verb, object)) return;
+  if (callPreTrigger(object, verb, object)) return;
 
   if (object.constructor.name !== "Consumable") {
     outputText.push(`You can't consume the <strong>${object.name}</strong>.`);
@@ -22,4 +22,6 @@ export const consume = (verb, nouns, _preps, orig) => {
 
   player.removeFromInventory(object.uniqueKey);
   outputText.push(`You consume the <strong>${object.name}</strong>.`);
+
+  if (callPostTrigger(object, verb, object)) return;
 };

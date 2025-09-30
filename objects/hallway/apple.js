@@ -20,4 +20,4 @@ const eatAppleTrigger = (apple) => {
     "You spit it out and throw the apple away, but you decide to keep the worm."
   );
 };
-apple.createTrigger("consume", eatAppleTrigger);
+apple.createPreTrigger("consume", eatAppleTrigger);

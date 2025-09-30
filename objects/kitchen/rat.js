@@ -23,8 +23,8 @@ const ratBiteTrigger = (object) => {
   return "As you get closer the rat bites you!<br>You quickly pull your hand back, but it still stings.";
 };
 
-rat.createTrigger("scream", ratBanishTrigger);
-rat.createTrigger("throw", ratBanishTrigger);
-rat.createTrigger("attack", ratBiteTrigger);
-rat.createTrigger("take", ratBiteTrigger);
-rat.createTrigger("smell", ratBanishTrigger);
+rat.createPreTrigger("scream", ratBanishTrigger);
+rat.createPreTrigger("throw", ratBanishTrigger);
+rat.createPreTrigger("attack", ratBiteTrigger);
+rat.createPreTrigger("take", ratBiteTrigger);
+rat.createPreTrigger("smell", ratBanishTrigger);

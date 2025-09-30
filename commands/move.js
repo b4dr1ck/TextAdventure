@@ -1,5 +1,5 @@
 import { outputText } from '../game.js';
-import { findObject, validateObject,callTrigger } from '../utils.js';
+import { findObject, validateObject,callPreTrigger } from '../utils.js';
 
 export const move = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
@@ -12,7 +12,7 @@ export const move = (verb, nouns, _preps, orig) => {
     return;
   }
 
-  if (callTrigger(object, verb, object)) return;
+  if (callPreTrigger(object, verb, object)) return;
 
   outputText.push(`You move the <strong>${object.name}</strong>, but nothing happens!</strong>.`);
 };

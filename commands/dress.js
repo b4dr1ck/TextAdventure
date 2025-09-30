@@ -1,12 +1,14 @@
 import { outputText } from "../game.js";
 import { player } from "../init.js";
-import { findObject, validateObject ,callTrigger} from "../utils.js";
+import { findObject, validateObject, callPostTrigger, callPreTrigger } from "../utils.js";
 
 export const dress = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
   if (!validateObject(object, orig)) return;
+
+  if (callPreTrigger(object, verb, object)) return;
 
   if (object.constructor.name !== "Equipment" && !object.canWear) {
     outputText.push(`You can't wear the <strong>${object.name}</strong>.`);
@@ -35,5 +37,5 @@ export const dress = (verb, nouns, _preps, orig) => {
     outputText.push(`You take off the <strong>${object.name}</strong>.`);
   }
 
-  if (callTrigger(object, verb, object)) return;
+  if (callPostTrigger(object, verb, object)) return;
 };

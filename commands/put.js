@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
-import { player, } from "../init.js";
-import { findObject, validateObject ,callTrigger} from "../utils.js";
+import { player } from "../init.js";
+import { findObject, validateObject, callPostTrigger, callPreTrigger } from "../utils.js";
 
 export const put = (verb, nouns, preps, orig) => {
   const id = nouns[0];
@@ -20,7 +20,7 @@ export const put = (verb, nouns, preps, orig) => {
     return;
   }
 
-  if (callTrigger(container, verb, object)) return;
+  if (callPreTrigger(container, verb, object)) return;
 
   if (container.constructor.name !== "Container" && container.constructor.name !== "Surface") {
     outputText.push(`You can't put things in or on the <strong>${container.name}</strong>.`);
@@ -40,4 +40,6 @@ export const put = (verb, nouns, preps, orig) => {
   player.removeFromInventory(object.uniqueKey);
   container.addItems(object);
   outputText.push(`You put the <strong>${object.name}</strong> ${prep} the <strong>${container.name}</strong>.`);
+
+  if (callPostTrigger(container, verb, object)) return;
 };

@@ -14,4 +14,4 @@ const benchLookTrigger = (bench) => {
   bench.deleteTrigger("look");
   return "On a closer look you find a <strong>chest</strong> standing under the bench.";
 };
-bench.createTrigger("look", benchLookTrigger);
+bench.createPostTrigger("look", benchLookTrigger);

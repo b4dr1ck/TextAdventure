@@ -27,6 +27,6 @@ const windowClimbTrigger = () => {
     "What do you expected?"
   );
 };
-window2.createTrigger("look", windowLookTrigger);
-window2.createTrigger("climb", windowClimbTrigger);
+window2.createPostTrigger("look", windowLookTrigger);
+window2.createPostTrigger("climb", windowClimbTrigger);
 window2.hear = "You hear the faint hooting of an owl in the distance.";

@@ -15,4 +15,4 @@ const stoneEatTrigger = (stone) => {
   player.removeFromInventory(stone.uniqueKey);
   return "You try to eat the stone, but it's too hard and gritty.<br>You end up hurting your teeth and feeling sick.";
 };
-stone.createTrigger("consume", stoneEatTrigger);
+stone.createPostTrigger("consume", stoneEatTrigger);

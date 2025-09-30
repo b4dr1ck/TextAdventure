@@ -1,5 +1,5 @@
 import { player } from "../init.js";
-import { findObject, callTrigger } from "../utils.js";
+import { findObject, callPostTrigger } from "../utils.js";
 import { outputText, commands } from "../game.js";
 
 export const use = (verb, nouns, preps, _orig) => {
@@ -48,7 +48,7 @@ export const use = (verb, nouns, preps, _orig) => {
     return;
   }
 
-  if (callTrigger(object2, verb, object1)) return;
+  if (callPostTrigger(object2, verb, object1)) return;
 
   outputText.push(`You can't use the <strong>${object1.name}</strong> on the <strong>${object2.name}</strong>.`);
 };

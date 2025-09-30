@@ -19,4 +19,4 @@ const amuletWearTrigger = () => {
   );
 };
 
-amulet.createTrigger("dress", amuletWearTrigger);
+amulet.createPostTrigger("dress", amuletWearTrigger);

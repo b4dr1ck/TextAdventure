@@ -15,4 +15,4 @@ tapestries.read = "One reads: <i>Execution of Heretics<i>, another <i>Ritual of 
 const tapestriesTakeTrigger = (tapestries) => {
   return "You try to take one of the tapestries, but it's firmly attached to the wall.<br>";
 };
-tapestries.createTrigger("take", tapestriesTakeTrigger);
+tapestries.createPostTrigger("take", tapestriesTakeTrigger);

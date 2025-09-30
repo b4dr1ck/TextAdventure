@@ -1,6 +1,6 @@
 import { outputText } from "../game.js";
 import { player, rooms } from "../init.js";
-import { findObject, validateObject,callTrigger } from "../utils.js";
+import { findObject, validateObject, callPostTrigger, callPreTrigger } from "../utils.js";
 
 export const drop = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
@@ -8,7 +8,7 @@ export const drop = (verb, nouns, _preps, orig) => {
 
   if (!validateObject(object, orig)) return;
 
-  if (callTrigger(object, verb, object)) return;
+  if (callPreTrigger(object, verb, object)) return;
 
   if (!player.isInInventory(object.uniqueKey)) {
     outputText.push(`You don't have the <strong>${object.name}</strong>.`);
@@ -23,4 +23,6 @@ export const drop = (verb, nouns, _preps, orig) => {
   player.removeFromInventory(object.uniqueKey);
   rooms[player.currentRoom.uniqueKey].addObjects(object);
   outputText.push(`You drop the <strong>${object.name}</strong>.`);
+
+  if (callPostTrigger(object, verb, object)) return;
 };

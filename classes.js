@@ -85,7 +85,8 @@ class BaseObject {
   #hear;
   #taste;
   #hidden;
-  #trigger;
+  #postTrigger;
+  #preTrigger;
 
   constructor(name, uniqueKey, aliases, description) {
     this.#name = name;
@@ -96,7 +97,8 @@ class BaseObject {
     this.#hear = "You hear nothing special.";
     this.#taste = "It tastes like nothing in particular.";
     this.#hidden = false;
-    this.#trigger = {};
+    this.#postTrigger = {};
+    this.#preTrigger = {};
   }
 
   get name() {
@@ -123,8 +125,11 @@ class BaseObject {
   get aliases() {
     return this.#aliases;
   }
-  get triggers() {
-    return this.#trigger;
+  get postTriggers() {
+    return this.#postTrigger;
+  }
+  get preTriggers() {
+    return this.#preTrigger;
   }
 
   set name(newName) {
@@ -146,19 +151,35 @@ class BaseObject {
     this.#hidden = isHidden;
   }
 
-  createTrigger(onCommand, script) {
-    this.#trigger[onCommand] = script;
+  createPostTrigger(onCommand, script) {
+    this.#postTrigger[onCommand] = script;
   }
-  deleteTrigger(onCommand) {
-    if (this.#trigger[onCommand]) {
-      delete this.#trigger[onCommand];
+  createPreTrigger(onCommand, script) {
+    this.#preTrigger[onCommand] = script;
+  }
+  deletePreTrigger(onCommand) {
+    if (this.#preTrigger[onCommand]) {
+      delete this.#preTrigger[onCommand];
       return true;
     }
     return false;
   }
-  trigger(command, ...args) {
-    if (this.#trigger[command]) {
-      return this.#trigger[command](...args);
+  deletePostTrigger(onCommand) {
+    if (this.#postTrigger[onCommand]) {
+      delete this.#postTrigger[onCommand];
+      return true;
+    }
+    return false;
+  }
+  postTrigger(command, ...args) {
+    if (this.#postTrigger[command]) {
+      return this.#postTrigger[command](...args);
+    }
+    return false;
+  }
+  preTrigger(command, ...args) {
+    if (this.#preTrigger[command]) {
+      return this.#preTrigger[command](...args);
     }
     return false;
   }

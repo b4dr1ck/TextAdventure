@@ -1,5 +1,5 @@
-import { outputText,commands } from "../game.js";
-import { callTrigger, findObject, validateObject } from "../utils.js";
+import { outputText, commands } from "../game.js";
+import { callPostTrigger, callPreTrigger, findObject, validateObject } from "../utils.js";
 
 export const climb = (verb, nouns, preps, orig) => {
   const id = nouns[0];
@@ -7,7 +7,7 @@ export const climb = (verb, nouns, preps, orig) => {
 
   if (!validateObject(object, orig)) return;
 
-  if (callTrigger(object, verb,object)) return;
+  if (callPreTrigger(object, verb, object)) return;
 
   if (object.canClimb) {
     outputText.push("You climb the " + object.name + ".");
@@ -15,4 +15,5 @@ export const climb = (verb, nouns, preps, orig) => {
   } else {
     outputText.push(`You can't climb the <strong>${object.name}</strong>.`);
   }
+  if (callPostTrigger(object, verb, object)) return;
 };

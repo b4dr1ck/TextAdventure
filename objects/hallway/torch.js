@@ -32,5 +32,5 @@ const torchUseTrigger = (item) => {
   return "You can't use that on the torch.";
 };
 
-torch.createTrigger("move", torchMoveTrigger);
-torch.createTrigger("use", torchUseTrigger);
+torch.createPostTrigger("move", torchMoveTrigger);
+torch.createPostTrigger("use", torchUseTrigger);

@@ -14,4 +14,4 @@ const eatBallTrigger = (ball) => {
   player.adjustHealth(-100);
   return "You try to eat the ball, but it's too big and hard to chew.<br>You end up choking on it and coughing violently.";
 };
-ball.createTrigger("consume", eatBallTrigger);
+ball.createPostTrigger("consume", eatBallTrigger);

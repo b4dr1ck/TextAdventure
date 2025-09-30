@@ -1,11 +1,13 @@
 import { outputText } from "../game.js";
-import { findObject, validateObject, callTrigger } from "../utils.js";
+import { findObject, validateObject, callPostTrigger, callPreTrigger } from "../utils.js";
 
 export const activate = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
   if (!validateObject(object, orig)) return;
+
+  callPreTrigger(object, verb, object);
 
   if (object.constructor.name !== "TriggerObject" || !object.canToggle) {
     outputText.push(`You can't ${verb} the <strong>${object.name}</strong>.`);
@@ -27,5 +29,5 @@ export const activate = (verb, nouns, _preps, orig) => {
   }
   outputText.push(`You ${verb} the <strong>${object.name}</strong>.`);
 
-  callTrigger(object, verb, object);
+  callPostTrigger(object, verb, object);
 };

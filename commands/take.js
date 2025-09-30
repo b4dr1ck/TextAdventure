@@ -1,13 +1,13 @@
 import { outputText } from "../game.js";
 import { player, rooms } from "../init.js";
-import { findObject, validateObject, callTrigger } from "../utils.js";
+import { findObject, validateObject, callPostTrigger, callPreTrigger } from "../utils.js";
 
 export const take = (verb, nouns, _preps, orig) => {
   const id = nouns[0];
   const object = findObject(id);
 
   if (!validateObject(object, orig)) return;
-  if (callTrigger(object, verb, object)) return;
+  if (callPreTrigger(object, verb, object)) return;
 
   if (!object.canTake) {
     outputText.push(`You can't take the <strong>${object.name}</strong>.`);
@@ -34,4 +34,6 @@ export const take = (verb, nouns, _preps, orig) => {
   player.addToInventory(object);
   rooms[player.currentRoom.uniqueKey].removeObject(object.uniqueKey);
   outputText.push(`You take the <strong>${object.name}</strong>.`);
+
+  if (callPostTrigger(object, verb, object)) return;
 };

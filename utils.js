@@ -145,10 +145,18 @@ const findObject = (key) => {
   return null;
 };
 
-const callTrigger = (object, verb, objec2) => {
-  // object has a trigger
-  if (object.triggers.hasOwnProperty(verb)) {
-    outputText.push(object.trigger(verb, objec2));
+const callPostTrigger = (object, verb, objec2) => {
+  // object has a postTriggers
+  if (object.postTriggers.hasOwnProperty(verb)) {
+    outputText.push(object.postTriggers(verb, objec2));
+    return true;
+  }
+};
+
+const callPreTrigger = (object, verb, objec2) => {
+  // object has a preTrigger
+  if (object.preTriggers.hasOwnProperty(verb)) {
+    outputText.push(object.preTrigger(verb, objec2));
     return true;
   }
 };
@@ -184,5 +192,6 @@ export {
   getRoomDescription,
   findObject,
   validateObject,
-  callTrigger,
+  callPostTrigger,
+  callPreTrigger,
 };
